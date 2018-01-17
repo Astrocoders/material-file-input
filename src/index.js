@@ -41,11 +41,7 @@ class FileInput extends Component {
         </InputLabel>
         <Input
           type="text"
-          endAdornment={
-            <IconButton onClick={() => this.handleClickUploadButton()}>
-              <FileUpload />
-            </IconButton>
-          }
+          endAdornment={<FileUpload />}
           value={this.getFileName(this.state.file)}
           onClick={() => this.handleClickUploadButton()}
           {...this.props.inputProps}
