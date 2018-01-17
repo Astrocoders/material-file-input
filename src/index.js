@@ -19,6 +19,16 @@ class FileInput extends Component {
     return file && file.name
   }
 
+  handleFileChange(event) {
+    const file = event.target.files[0]
+
+    if (!file) return
+
+    this.setState({ file })
+
+    this.props.onChange(file)
+  }
+
   render() {
     return (
       <FormControl fullWidth {...this.props.formControlProps}>
@@ -31,7 +41,6 @@ class FileInput extends Component {
         </InputLabel>
         <Input
           type="text"
-          onChange={this.props.onChange}
           endAdornment={
             <IconButton onClick={() => this.handleClickUploadButton()}>
               <FileUpload />
@@ -47,7 +56,7 @@ class FileInput extends Component {
           }}
           type="file"
           style={{ display: 'none' }}
-          onChange={e => this.setState({ file: e.target.files[0] })}
+          onChange={e => this.handleFileChange(e)}
         />
         {this.props.helperText && (
           <FormHelperText>{this.props.helperText}</FormHelperText>
